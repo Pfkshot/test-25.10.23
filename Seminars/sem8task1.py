@@ -10,8 +10,12 @@
 4. Использование функций. Ваша программа не должна быть линейной
 '''
 
+import copy
+import csv
+
 from os.path import exists
 from csv import DictReader, DictWriter
+from typing import List
 
 
 class LenNumberError(Exception):
@@ -101,6 +105,19 @@ def write_file(file_name, lst):
 
 
 file_name = 'phone.csv'
+new_file = 'new_file.csv'
+
+
+def copy_row():
+    with open(file_name, 'r', encoding='utf-8') as file:
+        reader=csv.reader(file)
+        data=list(reader)
+    row_number=int(input('Введите номер строки: '))-1
+
+    with open(new_file, 'w', newline='') as file:
+        writer=csv.writer(file)
+        writer.writerow(data[row_number])
+    print("Стока записана ")
 
 
 def main():
@@ -117,6 +134,10 @@ def main():
                 print("Файл отсутствует. Создайте его")
                 continue
             print(*read_file(file_name))
+        elif command == 'c':
+            if not exists(new_file):
+                create_file(new_file)
+            copy_row()
 
 
 main()
