@@ -4,7 +4,6 @@
 """
 import pandas as pd
 import random
-
 # Вариант с get_dummies
 lst = ['robot'] * 10
 lst += ['human'] * 10
@@ -16,7 +15,6 @@ data.head()
 print(data)
 
 print(g)
-
 # Вариант без с get_dummies
 lst = ['robot'] * 10
 lst += ['human'] * 10
@@ -25,6 +23,4 @@ data = pd.DataFrame({'whoAmI':lst})
 a = pd.DataFrame({'human': data['whoAmI'] == 'human',
               'robot': data['whoAmI'] == 'robot'}).astype(int).head(10)
 data.head()
-
 print(a)
-
